@@ -40,7 +40,7 @@ crosstab is a javascript utility library for inter-tab communication on the same
 | FireFox |       30+      |
 | Safari  |        6.1+    |
 
-No Mobile browser is supported.
+*Mobile browser should be supported.*
 
 # API #
 
