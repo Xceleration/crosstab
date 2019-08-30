@@ -48,6 +48,9 @@
       setItemAllowed = false;
     }
 
+    var useragent = (window.navigator && (window.navigator.userAgent || window.navigator.vendor)) || window.opera || "none";
+    var isSafari = /^((?!chrome|android).)*safari/i.test(useragent);
+
     // Other reasons
     var frozenTabEnvironment = false;
 
@@ -61,6 +64,11 @@
       if (!window.addEventListener) {
         reasons.push('addEventListener not available');
       }
+
+      if (isSafari) {
+        reasons.push('safari browser detected');
+      }
+
       if (frozenTabEnvironment) {
         reasons.push('frozen tab environment detected');
       }
@@ -626,7 +634,7 @@
     };
 
     crosstab.id = util.generateId();
-    crosstab.supported = !!localStorage && window.addEventListener && setItemAllowed;
+    crosstab.supported = !!localStorage && window.addEventListener && setItemAllowed && !isSafari;
     crosstab.util = util;
     crosstab.broadcast = broadcast;
     crosstab.broadcastMaster = broadcastMaster;
